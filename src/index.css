@@ -1,0 +1,33 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+  color: #666;
+  font-family: 'Lobster', cursive;  
+  text-transform: lowercase;
+}
+
+
+h1 i {
+  color: #f28e1c;
+}
+
+h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.2em;
+  color: #2a1b0d;
+}
+
+a {
+  color: #c57214;
+}
+
+a:hover {
+  color: #f28e1c;
+  text-decoration: underline;
+}
+
+.card {
+  min-height: 200px;
+}
