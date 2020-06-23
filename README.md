@@ -4,4 +4,4 @@ Fun little brewery app that lets you search breweries across the country using d
 
 Credit: API provided by https://www.openbrewerydb.org/
 
-![Screenshot](https://i.ibb.co/Psymp2M/image.png)
+![Screenshot](https://i.ibb.co/7j0bRXR/image.png)
