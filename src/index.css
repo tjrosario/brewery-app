@@ -1,5 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
 }
 
 h1 {
@@ -30,4 +31,29 @@ a:hover {
 
 .card {
   min-height: 200px;
+}
+
+.form-group label {
+  font-size: .8em;
+  font-weight: 500;
+}
+
+.form-control {
+  font-size: .8em;
+}
+
+.loader {
+  background: rgba(255, 255, 255, .5);
+  font-size: 2em;
+  height: 100%;
+  left: 0;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+
+.loader > div {
+  color: #c57214;
+  display: inline-block;
+  margin: 100px 0 0;
 }

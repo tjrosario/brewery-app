@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { DashboardContext } from './DashboardContext';
 
 export default function DashboardResults() {
-  const { breweries } = useContext(DashboardContext);
+  const { breweries, loading } = useContext(DashboardContext);
 
   return (
-    <div>
+    <div className="results position-relative">
       {breweries.length > 0 ?
         <div className="row">
           {breweries.map(brewery =>
@@ -35,6 +35,12 @@ export default function DashboardResults() {
       :
         <p className="my-4">No matching results.  Try adjusting your criteria.</p>
       }
+
+      {loading ?
+      <div className="loader position-absolute">
+        <div><i className="fa fa-spinner fa-spin" aria-hidden="true"></i></div>
+      </div>
+      : null}
     </div>
   );
 }
