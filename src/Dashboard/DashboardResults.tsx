@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { DashboardContext } from './DashboardContext';
 
-export default function DashboardResults() {
+interface IDashboardResults {}
+
+const DashboardResults: React.SFC<IDashboardResults> = (props): JSX.Element => {
   const { breweries, loading } = useContext(DashboardContext);
 
   return (
@@ -44,3 +46,5 @@ export default function DashboardResults() {
     </div>
   );
 }
+
+export default DashboardResults;

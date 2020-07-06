@@ -2,7 +2,9 @@ import React from "react";
 
 import Dashboard from './Dashboard/Dashboard';
 
-export default function App() {
+interface IAppProps {}
+
+const App: React.SFC<IAppProps> = (props): JSX.Element => {
   return (
     <main>
       <div className="container">
@@ -15,3 +17,5 @@ export default function App() {
     </main>
   );
 }
+
+export default App;

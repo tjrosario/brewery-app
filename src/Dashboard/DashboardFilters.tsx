@@ -3,7 +3,9 @@ import { DashboardContext } from './DashboardContext';
 import { decode } from '../common';
 import { useDebounce } from '../hooks';
 
-export default function DashboardFilters() {
+interface IDashboardFilters {}
+
+const DashboardFilters: React.FC<IDashboardFilters> = (props): JSX.Element => {
   const { query, criteria, types, states, search, setType, setState, setPerPage, loading } = useContext(DashboardContext);
 
   const [searchTerm, setSearchTerm] = useState(query);
@@ -14,15 +16,6 @@ export default function DashboardFilters() {
     if (loading) { return; }
     setType(criteria.by_type);
   }, []);
-
-  // componentWillReceiveProps
-  const isFirstRun = useRef(true);
-  useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false;
-      return;
-    }
-  });
 
   useEffect(() => {
     if (loading) { return; }
@@ -69,3 +62,5 @@ export default function DashboardFilters() {
     </div>
   );
 }
+
+export default DashboardFilters;

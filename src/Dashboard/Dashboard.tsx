@@ -4,7 +4,9 @@ import { DashboardProvider } from './DashboardContext';
 import DashboardFilters from './DashboardFilters';
 import DashboardResults from './DashboardResults';
 
-export default function Dashboard() {
+interface IDashboardProps {}
+
+const Dashboard: React.SFC<IDashboardProps> = (props): JSX.Element => {
   return (
     <DashboardProvider>
       <DashboardFilters />
@@ -12,3 +14,5 @@ export default function Dashboard() {
     </DashboardProvider>
   );
 }
+
+export default Dashboard;
