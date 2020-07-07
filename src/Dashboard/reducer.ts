@@ -1,7 +1,8 @@
+import { DashboardType } from './types';
 import { Types, DashboardActions } from './actions';
-import { initialState, DashboardType, encode } from '../common';
+import { initialState, encode } from '../common';
 
-export default function dashboardReducer(state: DashboardType, action: DashboardActions) {
+export default function dashboardReducer(state: DashboardType, action: DashboardActions): DashboardType {
   switch (action.type) {
     case Types.SEARCH:
       return {

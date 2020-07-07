@@ -1,4 +1,5 @@
-import { DashboardType } from './../common';
+import { DashboardType } from './types';
+import { IBrewery } from '~/Brewery/types';
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
@@ -23,25 +24,25 @@ export enum Types {
 export type DashboardPayload = {
   [Types.SEARCH]: {
     query: string;
-    breweries: Array<any>,
+    breweries: IBrewery[];
     loading?: boolean;
   }
 
   [Types.SET_TYPE]: {
     by_type: string;
-    breweries: Array<any>,
+    breweries: IBrewery[];
     loading?: boolean;
   }
 
   [Types.SET_PERPAGE]: {
     per_page: string;
-    breweries: Array<any>,
+    breweries: IBrewery[];
     loading?: boolean;
   }
 
   [Types.SET_STATE]: {
     by_state: string;
-    breweries: Array<any>,
+    breweries: IBrewery[];
     loading?: boolean;
   }
 

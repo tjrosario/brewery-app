@@ -1,36 +1,18 @@
 import React, { useContext } from "react";
 import { DashboardContext } from './DashboardContext';
+import DashboardResult from "./DashboardResult";
+import { IBrewery } from "~/Brewery/types";
 
-interface IDashboardResults {}
-
-const DashboardResults: React.SFC<IDashboardResults> = (props): JSX.Element => {
+const DashboardResults: React.SFC = (): JSX.Element => {
   const { breweries, loading } = useContext(DashboardContext);
 
   return (
     <div className="results position-relative">
       {breweries.length > 0 ?
         <div className="row">
-          {breweries.map(brewery =>
+          {breweries.map((brewery: IBrewery) =>
           <div className="col-4 mb-3" key={brewery.id}>
-            <div className="card">
-              <div className="card-body">
-                <h2 className="card-title">{brewery.name}</h2>
-
-                <address>
-                  {brewery.street}<br/>
-                  {brewery.city}, {brewery.state} {brewery.postal_code}
-                </address>
-
-                {brewery.website_url ?
-                <small>
-                  <a href={brewery.website_url} target={'_blank'}>
-                    <i className="fas fa-external-link-alt mr-2"></i>
-                    Website
-                  </a>
-                </small>
-                : null}
-              </div>
-            </div>
+            <DashboardResult data={brewery} />
           </div>
           )}
         </div>

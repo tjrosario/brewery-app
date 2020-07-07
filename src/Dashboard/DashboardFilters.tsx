@@ -1,30 +1,26 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { DashboardContext } from './DashboardContext';
 import { decode } from '../common';
 import { useDebounce } from '../hooks';
 
-interface IDashboardFilters {}
-
-const DashboardFilters: React.FC<IDashboardFilters> = (props): JSX.Element => {
+const DashboardFilters: React.FC = (): JSX.Element => {
   const { query, criteria, types, states, search, setType, setState, setPerPage, loading } = useContext(DashboardContext);
 
   const [searchTerm, setSearchTerm] = useState(query);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  // componentDidMount
-  useEffect(() => {
-    if (loading) { return; }
-    setType(criteria.by_type);
-  }, []);
-
-  useEffect(() => {
+  const checkSearchTerm = useCallback((term) => {
     if (loading) { return; }
 
-    if (debouncedSearchTerm) {
-      search(debouncedSearchTerm);
+    if (term) {
+      search(term);
     } else {
       setType(criteria.by_type);
     }
+  }, []);
+  
+  useEffect(() => {
+    checkSearchTerm(debouncedSearchTerm);
   }, [debouncedSearchTerm]);
 
   return (

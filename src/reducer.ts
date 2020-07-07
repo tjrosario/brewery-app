@@ -1,4 +1,4 @@
-import { DashboardType } from './common';
+import { DashboardType } from './Dashboard/types';
 import dashboardReducer from './Dashboard/reducer';
 import { DashboardActions } from './Dashboard/actions';
 
