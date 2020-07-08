@@ -1,15 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { IBrewery } from "~/Brewery/types";
 
-interface IDashboardResult {
+interface IDashboardResultProps {
   data: IBrewery;
 }
 
-const DashboardResult: React.SFC<IDashboardResult> = ({ data }: IDashboardResult): JSX.Element => {
+const DashboardResult: React.SFC<IDashboardResultProps> = ({ data }): JSX.Element => {
   return (
     <div className="card">
       <div className="card-body">
-        <h2 className="card-title">{data.name}</h2>
+        <h2 className="card-title">
+          <Link to={`/brewery/${data.id}`}>{data.name}</Link>
+        </h2>
 
         <address>
           {data.street}<br/>

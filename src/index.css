@@ -14,10 +14,23 @@ h1 i {
   color: #f28e1c;
 }
 
+h1 a {
+  color: inherit;
+}
+
+h1 a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
 h2 {
   font-family: 'Anton', sans-serif;
   font-size: 1.2em;
   color: #2a1b0d;
+}
+
+h2 a {
+  color: inherit;
 }
 
 a {
