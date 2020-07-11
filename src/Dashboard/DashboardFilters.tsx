@@ -1,16 +1,28 @@
-import React, { useContext, useEffect, useState, useCallback } from "react";
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { DashboardContext } from './DashboardContext';
-import { decode } from '../common';
 import { useDebounce } from '../hooks';
+import DashboardFiltersFC from './DashboardFiltersFC';
 
 const DashboardFilters: React.FC = (): JSX.Element => {
-  const { query, criteria, types, states, search, setType, setState, setPerPage, loading } = useContext(DashboardContext);
+  const {
+    query,
+    criteria,
+    types,
+    states,
+    search,
+    setType,
+    setState,
+    setPerPage,
+    loading,
+  } = useContext(DashboardContext);
 
   const [searchTerm, setSearchTerm] = useState(query);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   const checkSearchTerm = useCallback((term) => {
-    if (loading) { return; }
+    if (loading) {
+      return;
+    }
 
     if (term) {
       search(term);
@@ -18,45 +30,23 @@ const DashboardFilters: React.FC = (): JSX.Element => {
       setType(criteria.by_type);
     }
   }, []);
-  
+
   useEffect(() => {
     checkSearchTerm(debouncedSearchTerm);
   }, [debouncedSearchTerm]);
 
   return (
-    <div className="filters row justify-content-end text-right pt-3">
-      <div className="form-group d-flex align-items-baseline col-3">
-        <input type="text" className="form-control" placeholder="Search" onChange={e => setSearchTerm(e.target.value)} defaultValue={searchTerm} />
-      </div>
-
-      <div className="form-group d-flex align-items-baseline col-3">
-        <label htmlFor="types" className="mr-2 w-100">Type:</label>
-        <select className="form-control" id="types" defaultValue={criteria.by_type} onChange={ev => setType(ev.target.value)}>
-          {types.map(type =>
-            <option value={type} key={type}>{type}</option>
-          )}
-        </select>
-      </div>
-
-      <div className="form-group d-flex align-items-baseline col-3">
-        <label htmlFor="perPage" className="mr-2 w-100">State:</label>
-        <select className="form-control" id="types" defaultValue={decode(criteria.by_state)} onChange={ev => setState(ev.target.value)}>
-          {states.map(state =>
-            <option value={state} key={state}>{state}</option>
-          )}
-        </select>
-      </div>
-
-      <div className="form-group d-flex align-items-baseline col-3">
-        <label htmlFor="perPage" className="mr-2 w-100">No. Results:</label>
-        <select className="form-control" id="types" defaultValue={criteria.per_page} onChange={ev => setPerPage(ev.target.value)}>
-          {[10, 20, 50].map(perPage =>
-            <option value={perPage} key={perPage}>{perPage}</option>
-          )}
-        </select>
-      </div>
-    </div>
+    <DashboardFiltersFC
+      searchTerm={searchTerm}
+      setSearchTerm={setSearchTerm}
+      criteria={criteria}
+      types={types}
+      states={states}
+      setType={setType}
+      setPerPage={setPerPage}
+      setState={setState}
+    />
   );
-}
+};
 
 export default DashboardFilters;
