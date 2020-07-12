@@ -1,26 +1,17 @@
 import React, { useContext, useMemo } from "react";
-import { DashboardContext } from './DashboardContext';
-import DashboardResult from "./DashboardResult";
-import { IBrewery } from "~/Brewery/types";
+import { DashboardResultsContext } from './DashboardContext';
+import BreweryList from "~/Brewery/BreweryList";
 
 const DashboardResults: React.SFC = (): JSX.Element => {
-  const { breweries, loading } = useContext(DashboardContext);
+  const { breweries, loading } = useContext(DashboardResultsContext);
   
   const memoBreweries = useMemo(() => breweries, [breweries]);
+  
+  console.log('DashboardResults');
 
   return (
     <div className="results position-relative">
-      {memoBreweries.length > 0 ?
-        <div className="row">
-          {memoBreweries.map((brewery: IBrewery) =>
-          <div className="col-4 mb-3" key={brewery.id}>
-            <DashboardResult data={brewery} />
-          </div>
-          )}
-        </div>
-      :
-        <p className="my-4">No matching results.  Try adjusting your criteria.</p>
-      }
+      <BreweryList breweries={memoBreweries} />
 
       {loading ?
       <div className="loader position-absolute">

@@ -1,11 +1,11 @@
 import React, { useReducer, useMemo, createContext, ReactNode } from "react";
 import { Types } from './actions';
 import dashboardReducer from './reducer';
-import { initialState, GATEWAY, encode, serialize } from '../common';
+import { initialDashboardState, GATEWAY, encode, serialize } from '../common';
 import { DashboardType, SearchCriteria } from "./types";
 import { IBrewery } from "~/Brewery/types";
 
-interface IDashboardContext extends DashboardType {
+interface DashboardContextProps extends DashboardType {
   search?(query: string): void;
   setType?(by_type: string): void;
   setState?(by_state: string): void;
@@ -14,28 +14,34 @@ interface IDashboardContext extends DashboardType {
   reset?(): void;
 }
 
-export const DashboardContext = createContext<IDashboardContext>(initialState);
+interface DashboardResultsContextProps {
+  breweries: IBrewery[];
+  loading: boolean;
+}
+
+export const DashboardFiltersContext = createContext<DashboardContextProps>(initialDashboardState);
+
+export const DashboardResultsContext = createContext<DashboardResultsContextProps>({ breweries: [], loading: false });
 
 interface IDashboardProviderProps {
   children: ReactNode;
 }
 
+const search = async (query: string): Promise<IBrewery[]> => {
+  const response = await (await fetch(`${GATEWAY}/search?query=${encode(query)}`)).json();
+  return response;
+};
+
+const searchCriteria = async (criteria: SearchCriteria): Promise<IBrewery[]> => {
+  const response = await (await fetch(`${GATEWAY}/?${serialize(criteria)}`)).json();
+  return response;
+};
+
 export const DashboardProvider: React.FC<IDashboardProviderProps> = ({ children }: IDashboardProviderProps): JSX.Element => {
-  const [state, dispatch] = useReducer(dashboardReducer, initialState);
+  const [state, dispatch] = useReducer(dashboardReducer, initialDashboardState);
 
-  const search = async (query: string): Promise<IBrewery[]> => {
-    const response = await (await fetch(`${GATEWAY}/search?query=${encode(query)}`)).json();
-    return response;
-  };
-
-  const searchCriteria = async (criteria: SearchCriteria): Promise<IBrewery[]> => {
-    const response = await (await fetch(`${GATEWAY}/?${serialize(criteria)}`)).json();
-    return response;
-  };
-
-  const value = {
+  const filtersValue = {
     query: state.query,
-    breweries: state.breweries,
     types: state.types,
     states: state.states,
     criteria: state.criteria,
@@ -67,11 +73,16 @@ export const DashboardProvider: React.FC<IDashboardProviderProps> = ({ children 
     reset: () => dispatch({ type: Types.RESET, payload: {} })
   };
 
+  const resultsValue = {
+    breweries: state.breweries,
+    loading: state.loading
+  };
+
   return (
-    <DashboardContext.Provider value={value}>
-      {children}
-    </DashboardContext.Provider>
+    <DashboardFiltersContext.Provider value={filtersValue}>
+      <DashboardResultsContext.Provider value={resultsValue}>
+        {children}
+      </DashboardResultsContext.Provider>
+    </DashboardFiltersContext.Provider>
   );
 }
-
-export const DashboardConsumer = DashboardContext.Consumer;

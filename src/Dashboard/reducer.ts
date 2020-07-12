@@ -1,6 +1,6 @@
 import { DashboardType } from './types';
 import { Types, DashboardActions } from './actions';
-import { initialState, encode } from '../common';
+import { initialDashboardState, encode } from '../common';
 
 export default function dashboardReducer(state: DashboardType, action: DashboardActions): DashboardType {
   switch (action.type) {
@@ -52,7 +52,7 @@ export default function dashboardReducer(state: DashboardType, action: Dashboard
       };
       
     case Types.RESET:
-      return { ...state, ...initialState }
+      return { ...state, ...initialDashboardState }
 
     default:
       return state;

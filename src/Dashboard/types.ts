@@ -8,7 +8,7 @@ export type SearchCriteria = {
 
 export type DashboardType = {
   query: string;
-  breweries: IBrewery[];
+  breweries?: IBrewery[];
   types: string[];
   states: string[];
   criteria: SearchCriteria;
