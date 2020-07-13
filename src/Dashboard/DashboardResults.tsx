@@ -6,8 +6,6 @@ const DashboardResults: React.SFC = (): JSX.Element => {
   const { breweries, loading } = useContext(DashboardResultsContext);
   
   const memoBreweries = useMemo(() => breweries, [breweries]);
-  
-  console.log('DashboardResults');
 
   return (
     <div className="results position-relative">

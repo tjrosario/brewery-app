@@ -1,60 +1,48 @@
 import { DashboardType } from './types';
 import { Types, DashboardActions } from './actions';
 import { initialDashboardState, encode } from '../common';
+import produce from 'immer';
 
-export default function dashboardReducer(state: DashboardType, action: DashboardActions): DashboardType {
+const reducer = (draft: DashboardType, action: DashboardActions): DashboardType => {
   switch (action.type) {
     case Types.SEARCH:
-      return {
-        ...state,
-        query: action.payload.query,
-        breweries: action.payload.breweries,
-        loading: false
-      };
+      draft.query = action.payload.query;
+      draft.breweries = action.payload.breweries;
+      draft.loading = false;
+      return;
 
     case Types.SET_TYPE:
-      return {
-        ...state,
-        criteria: {
-          ...state.criteria,
-          by_type: action.payload.by_type
-        },
-        breweries: action.payload.breweries,
-        loading: false
-      };
+      draft.criteria.by_type = action.payload.by_type;
+      draft.breweries = action.payload.breweries;
+      draft.loading = false;
+      return;
 
     case Types.SET_STATE:
-      return {
-        ...state,
-        criteria: {
-          ...state.criteria,
-          by_state: encode(action.payload.by_state)
-        },
-        breweries: action.payload.breweries,
-        loading: false
-      };
+      draft.criteria.by_state = encode(action.payload.by_state);
+      draft.breweries = action.payload.breweries;
+      draft.loading = false;
+      return;
 
     case Types.SET_PERPAGE:
-      return {
-        ...state,
-        criteria: {
-          ...state.criteria,
-          per_page: action.payload.per_page
-        },
-        breweries: action.payload.breweries,
-        loading: false
-      };
+      draft.criteria.per_page = action.payload.per_page;
+      draft.breweries = action.payload.breweries;
+      draft.loading = false;
+      return;
 
     case Types.SET_LOADING:
-      return { 
-        ...state, 
-        loading: action.payload.loading
-      };
-      
+      draft.loading = action.payload.loading;
+      return;
+
     case Types.RESET:
-      return { ...state, ...initialDashboardState }
+      draft = initialDashboardState;
+      return;
 
     default:
-      return state;
+      return draft;
   }
-}
+};
+
+const dashboardReducer = produce(reducer, initialDashboardState);
+
+
+export default dashboardReducer;
