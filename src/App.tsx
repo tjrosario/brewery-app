@@ -19,7 +19,7 @@ const App: React.SFC<IAppProps> = (props): JSX.Element => {
           </h1>
           <Switch>
             <Route path="/" component={DashboardView} exact />
-            <Route path="/brewery/:id" component={BreweryView} exact />
+            <Route path="/breweries/:id" component={BreweryView} exact />
             <Route path="/" render={(()=> <div>404</div>)} />
           </Switch>
         </BrowserRouter>
