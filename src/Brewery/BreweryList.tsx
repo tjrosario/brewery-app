@@ -2,11 +2,11 @@ import React from "react";
 import { IBrewery } from "./types";
 import Brewery from "./Brewery";
 
-interface BreweryListProps {
+interface IBreweryListProps {
   breweries: IBrewery[];
 }
 
-const BreweryList: React.SFC<BreweryListProps> = ({ breweries }): JSX.Element => {
+const BreweryList: React.SFC<IBreweryListProps> = ({ breweries }): JSX.Element => {
   return (
     <>
       {breweries.length > 0 ?

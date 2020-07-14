@@ -1,4 +1,4 @@
-import React, { useReducer, useMemo, createContext, ReactNode } from "react";
+import React, { useReducer, createContext, ReactNode } from "react";
 
 import { Types } from './actions';
 import dashboardReducer from './reducer';
@@ -6,7 +6,7 @@ import { initialDashboardState, GATEWAY, encode, serialize } from '../common';
 import { DashboardType, SearchCriteria } from "./types";
 import { IBrewery } from "~/Brewery/types";
 
-interface DashboardContextProps extends DashboardType {
+interface IDashboardContextProps extends DashboardType {
   search?(query: string): void;
   searchCriteria?(criteria: SearchCriteria): void;
   setType?(by_type: string): void;
@@ -17,14 +17,14 @@ interface DashboardContextProps extends DashboardType {
   reset?(): void;
 }
 
-interface DashboardResultsContextProps {
+interface IDashboardResultsContextProps {
   breweries: IBrewery[];
   loading: boolean;
 }
 
-export const DashboardFiltersContext = createContext<DashboardContextProps>(initialDashboardState);
+export const DashboardFiltersContext = createContext<IDashboardContextProps>(initialDashboardState);
 
-export const DashboardResultsContext = createContext<DashboardResultsContextProps>({ breweries: [], loading: false });
+export const DashboardResultsContext = createContext<IDashboardResultsContextProps>({ breweries: [], loading: false });
 
 interface IDashboardProviderProps {
   children: ReactNode;

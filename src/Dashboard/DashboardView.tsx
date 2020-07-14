@@ -3,9 +3,9 @@ import { DashboardProvider } from './DashboardContext';
 import DashboardFilters from './DashboardFilters';
 import DashboardResults from './DashboardResults';
 
-interface DashboardViewProps {}
+interface IDashboardViewProps {}
 
-const DashboardView: React.SFC<DashboardViewProps> = (): JSX.Element => {
+const DashboardView: React.SFC<IDashboardViewProps> = (): JSX.Element => {
   return (
     <DashboardProvider>
       <div className="row">

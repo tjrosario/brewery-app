@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 
-interface TextFieldProps {
+interface ITextFieldProps {
   value: string|number;
   placeholder: string;
   label?: string;
@@ -8,7 +8,7 @@ interface TextFieldProps {
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextField: React.SFC<TextFieldProps> = ({ name, label, placeholder, value, handleChange }): JSX.Element => {
+const TextField: React.SFC<ITextFieldProps> = ({ name, label, placeholder, value, handleChange }): JSX.Element => {
   return (
     <div className="form-group">
       {label ? <label htmlFor={name} className="mr-2 w-100">{label}:</label> : null}

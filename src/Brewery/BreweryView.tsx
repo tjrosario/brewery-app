@@ -4,9 +4,9 @@ import { GATEWAY } from '../common';
 import { IBrewery } from './types';
 import Brewery from './Brewery';
 
-interface BreweryViewProps extends RouteComponentProps<{ id: string }> {}
+interface IBreweryViewProps extends RouteComponentProps<{ id: string }> {}
 
-const BreweryView: React.FC<BreweryViewProps> = ({ match }): JSX.Element => {
+const BreweryView: React.FC<IBreweryViewProps> = ({ match }): JSX.Element => {
   const { id } = match.params;
 
   const [brewery, setBrewery] = useState<IBrewery>(null);

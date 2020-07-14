@@ -1,6 +1,6 @@
 import React, { useCallback, ChangeEvent } from "react";
 
-interface SelectFieldProps {
+interface ISelectFieldProps {
   label: string;
   name: string;
   items: Array<string|number>; // expand this to accept objects
@@ -8,7 +8,7 @@ interface SelectFieldProps {
   handleChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const SelectField: React.SFC<SelectFieldProps> = ({ name, label, items, value, handleChange }): JSX.Element => {
+const SelectField: React.SFC<ISelectFieldProps> = ({ name, label, items, value, handleChange }): JSX.Element => {
   return (
     <div className="form-group ">
       <label htmlFor={name} className="mr-2 w-100">{label}:</label>
