@@ -8,8 +8,14 @@ interface DashboardViewProps {}
 const DashboardView: React.SFC<DashboardViewProps> = (): JSX.Element => {
   return (
     <DashboardProvider>
-      <DashboardFilters />
-      <DashboardResults />
+      <div className="row">
+        <div className="col-2">
+          <DashboardFilters />
+        </div>
+        <div className="col-10">
+          <DashboardResults />
+        </div>
+      </div>
     </DashboardProvider>
   );
 }

@@ -18,7 +18,13 @@ const reducer = (draft: DashboardType, action: DashboardActions): DashboardType 
       return;
 
     case Types.SET_STATE:
-      draft.criteria.by_state = encode(action.payload.by_state);
+      draft.criteria.by_state = action.payload.by_state;
+      draft.breweries = action.payload.breweries;
+      draft.loading = false;
+      return;
+
+    case Types.SET_POSTAL:
+      draft.criteria.by_postal = action.payload.by_postal;
       draft.breweries = action.payload.breweries;
       draft.loading = false;
       return;
@@ -42,7 +48,6 @@ const reducer = (draft: DashboardType, action: DashboardActions): DashboardType 
   }
 };
 
-const dashboardReducer = produce(reducer, initialDashboardState);
-
+const dashboardReducer = produce(reducer);
 
 export default dashboardReducer;

@@ -1,4 +1,5 @@
 import React, { useReducer, useMemo, createContext, ReactNode } from "react";
+
 import { Types } from './actions';
 import dashboardReducer from './reducer';
 import { initialDashboardState, GATEWAY, encode, serialize } from '../common';
@@ -9,6 +10,7 @@ interface DashboardContextProps extends DashboardType {
   search?(query: string): void;
   setType?(by_type: string): void;
   setState?(by_state: string): void;
+  setPostal?(by_postal: string): void;
   setPerPage?(per_page: string): void;
   setLoading?(loading: boolean): void;
   reset?(): void;
@@ -38,6 +40,7 @@ const searchCriteria = async (criteria: SearchCriteria): Promise<IBrewery[]> => 
 };
 
 export const DashboardProvider: React.FC<IDashboardProviderProps> = ({ children }: IDashboardProviderProps): JSX.Element => {
+
   const [state, dispatch] = useReducer(dashboardReducer, initialDashboardState);
 
   const filtersValue = {
@@ -68,6 +71,12 @@ export const DashboardProvider: React.FC<IDashboardProviderProps> = ({ children 
 
       searchCriteria({ ...state.criteria, per_page })
         .then(breweries => dispatch({ type: Types.SET_PERPAGE, payload: { per_page, breweries } }));
+    },
+    setPostal: (by_postal: string) => {
+      dispatch({ type: Types.SET_LOADING, payload: { loading: true } });
+
+      searchCriteria({ ...state.criteria, by_postal })
+        .then(breweries => dispatch({ type: Types.SET_POSTAL, payload: { by_postal, breweries } }));
     },
     setLoading: (loading: boolean) => dispatch({ type: Types.SET_LOADING, payload: { loading } }),
     reset: () => dispatch({ type: Types.RESET, payload: {} })

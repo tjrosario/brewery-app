@@ -9,6 +9,7 @@ export const initialDashboardState = {
   criteria: {
     by_type: 'micro',
     by_state: 'new_jersey',
+    by_postal: '',
     per_page: 20
   },
   query: '',

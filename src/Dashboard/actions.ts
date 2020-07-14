@@ -17,6 +17,7 @@ export enum Types {
   SET_TYPE = 'SET_TYPE',
   SET_PERPAGE = 'SET_PERPAGE',
   SET_STATE = 'SET_STATE',
+  SET_POSTAL = 'SET_POSTAL',
   SET_LOADING = 'SET_LOADING',
   RESET = 'RESET'
 }
@@ -42,6 +43,12 @@ export type DashboardPayload = {
 
   [Types.SET_STATE]: {
     by_state: string;
+    breweries: IBrewery[];
+    loading?: boolean;
+  }
+
+  [Types.SET_POSTAL]: {
+    by_postal: string;
     breweries: IBrewery[];
     loading?: boolean;
   }

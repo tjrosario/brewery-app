@@ -11,12 +11,15 @@ const App: React.SFC<IAppProps> = (props): JSX.Element => {
     <main>
       <div className="container">
         <BrowserRouter>
-          <h1>
-            <Link to={'/'}>
-              <i className="fa fa-beer mr-2" aria-hidden="true"></i>
-              Brewery App
-            </Link>
-          </h1>
+          <header className="my-3">
+            <h1>
+              <Link to={'/'}>
+                <i className="fa fa-beer mr-2" aria-hidden="true"></i>
+                Brewery App
+              </Link>
+            </h1>
+          </header>
+
           <Switch>
             <Route path="/" component={DashboardView} exact />
             <Route path="/breweries/:id" component={BreweryView} exact />
