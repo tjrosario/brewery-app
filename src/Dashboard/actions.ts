@@ -1,4 +1,4 @@
-import { DashboardType } from './types';
+import { DashboardType, SearchCriteria } from './types';
 import { IBrewery } from '~/Brewery/types';
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -14,6 +14,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 export enum Types {
   SEARCH = 'SEARCH',
+  SEARCH_CRITERIA = 'SEARCH_CRITERIA',
   SET_TYPE = 'SET_TYPE',
   SET_PERPAGE = 'SET_PERPAGE',
   SET_STATE = 'SET_STATE',
@@ -25,6 +26,12 @@ export enum Types {
 export type DashboardPayload = {
   [Types.SEARCH]: {
     query: string;
+    breweries: IBrewery[];
+    loading?: boolean;
+  }
+
+  [Types.SEARCH_CRITERIA]: {
+    criteria: SearchCriteria;
     breweries: IBrewery[];
     loading?: boolean;
   }

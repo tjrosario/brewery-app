@@ -70,3 +70,11 @@ a:hover {
   display: inline-block;
   margin: 100px 0 0;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-pointer:hover {
+  text-decoration: underline;
+}

@@ -8,6 +8,7 @@ import { IBrewery } from "~/Brewery/types";
 
 interface DashboardContextProps extends DashboardType {
   search?(query: string): void;
+  searchCriteria?(criteria: SearchCriteria): void;
   setType?(by_type: string): void;
   setState?(by_state: string): void;
   setPostal?(by_postal: string): void;
@@ -53,6 +54,12 @@ export const DashboardProvider: React.FC<IDashboardProviderProps> = ({ children 
       dispatch({ type: Types.SET_LOADING, payload: { loading: true } });
 
       search(query).then(breweries => dispatch({ type: Types.SEARCH, payload: { query, breweries } }));
+    },
+    searchCriteria: (criteria: SearchCriteria) => {
+      dispatch({ type: Types.SET_LOADING, payload: { loading: true } });
+
+      searchCriteria({ ...state.criteria })
+        .then(breweries => dispatch({ type: Types.SEARCH_CRITERIA, payload: { criteria, breweries } }));
     },
     setType: (by_type: string) => {
       dispatch({ type: Types.SET_LOADING, payload: { loading: true } });

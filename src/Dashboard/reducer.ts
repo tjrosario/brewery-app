@@ -11,6 +11,12 @@ const reducer = (draft: DashboardType, action: DashboardActions): DashboardType 
       draft.loading = false;
       return;
 
+    case Types.SEARCH_CRITERIA:
+      draft.criteria = action.payload.criteria;
+      draft.breweries = action.payload.breweries;
+      draft.loading = false;
+      return;
+
     case Types.SET_TYPE:
       draft.criteria.by_type = action.payload.by_type;
       draft.breweries = action.payload.breweries;
@@ -40,7 +46,8 @@ const reducer = (draft: DashboardType, action: DashboardActions): DashboardType 
       return;
 
     case Types.RESET:
-      draft = initialDashboardState;
+      draft.query = initialDashboardState.query;
+      draft.criteria = initialDashboardState.criteria;
       return;
 
     default:

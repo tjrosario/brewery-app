@@ -4,15 +4,15 @@ interface SelectFieldProps {
   label: string;
   name: string;
   items: Array<string|number>; // expand this to accept objects
-  defaultValue: string|number;
+  value: string|number;
   handleChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const SelectField: React.SFC<SelectFieldProps> = ({ name, label, items, defaultValue, handleChange }): JSX.Element => {
+const SelectField: React.SFC<SelectFieldProps> = ({ name, label, items, value, handleChange }): JSX.Element => {
   return (
     <div className="form-group ">
       <label htmlFor={name} className="mr-2 w-100">{label}:</label>
-      <select className="form-control" id={name} name={name} defaultValue={defaultValue} onChange={handleChange}>
+      <select className="form-control" id={name} name={name} value={value} onChange={handleChange}>
         {items.map(item =>
           <option value={item} key={item}>{item}</option>
         )}
