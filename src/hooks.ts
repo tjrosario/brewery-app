@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactText } from 'react';
 
-export function useDebounce(value, delay) {
+export function useDebounce(value: ReactText, delay: number) {
   // State and setters for debounced value
   const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -26,7 +26,7 @@ export function useDebounce(value, delay) {
     // Only re-call effect if value changes
     // You could also add the "delay" var to inputs array if you ...
     // ... need to be able to change that dynamically.
-    [value]
+    [value, delay]
   );
 
   return debouncedValue;

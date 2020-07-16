@@ -1,12 +1,10 @@
-import React from "react";
+import React from 'react';
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-
 import DashboardView from './Dashboard/DashboardView';
 import BreweryView from "./Brewery/BreweryView";
+import './App.css';
 
-interface IAppProps {}
-
-const App: React.SFC<IAppProps> = (props): JSX.Element => {
+function App() {
   return (
     <main>
       <div className="container">
@@ -28,7 +26,6 @@ const App: React.SFC<IAppProps> = (props): JSX.Element => {
         </BrowserRouter>
       </div>
     </main>
-
   );
 }
 

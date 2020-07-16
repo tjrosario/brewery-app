@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import { DashboardResultsContext } from './DashboardContext';
-import BreweryList from "~/Brewery/BreweryList";
+import BreweryList from '../Brewery/BreweryList';
 
 const DashboardResults: React.SFC = (): JSX.Element => {
   const { breweries, loading } = useContext(DashboardResultsContext);

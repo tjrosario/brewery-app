@@ -1,4 +1,4 @@
-import React, { useCallback, ChangeEvent } from "react";
+import React, { ChangeEvent } from "react";
 
 interface ISelectFieldProps {
   label: string;

@@ -9,7 +9,8 @@ interface IBreweryViewProps extends RouteComponentProps<{ id: string }> {}
 const BreweryView: React.FC<IBreweryViewProps> = ({ match }): JSX.Element => {
   const { id } = match.params;
 
-  const [brewery, setBrewery] = useState<IBrewery>(null);
+  const [brewery, setBrewery] = useState<IBrewery>();
+
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 

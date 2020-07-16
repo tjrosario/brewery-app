@@ -4,27 +4,39 @@ import { Types } from './actions';
 import dashboardReducer from './reducer';
 import { initialDashboardState, GATEWAY, encode, serialize } from '../common';
 import { DashboardType, SearchCriteria } from "./types";
-import { IBrewery } from "~/Brewery/types";
+import { IBrewery } from '../Brewery/types';
 
-interface IDashboardContextProps extends DashboardType {
-  search?(query: string): void;
-  searchCriteria?(criteria: SearchCriteria): void;
-  setType?(by_type: string): void;
-  setState?(by_state: string): void;
-  setPostal?(by_postal: string): void;
-  setPerPage?(per_page: string): void;
-  setLoading?(loading: boolean): void;
-  reset?(): void;
+interface IDashboardFiltersContextProps extends DashboardType  {
+  search(query: string): void | undefined;
+  searchCriteria?(criteria: SearchCriteria): void | undefined;
+  setType(by_type: string): void | undefined;
+  setState(by_state: string): void | undefined;
+  setPostal(by_postal: string): void | undefined;
+  setPerPage(per_page: string): void | undefined;
+  setLoading(loading: boolean): void | undefined;
+  reset(): void | undefined;
 }
 
 interface IDashboardResultsContextProps {
-  breweries: IBrewery[];
-  loading: boolean;
+  breweries: IBrewery[] | undefined;
+  loading: boolean | undefined;
 }
 
-export const DashboardFiltersContext = createContext<IDashboardContextProps>(initialDashboardState);
+const initialDashboardFiltersState = {
+  ...initialDashboardState,
+  search: (query: string) => {},
+  searchCriteria: (criteria: SearchCriteria) => {},
+  setType: (by_type: string) => {},
+  setState: (by_state: string) => {},
+  setPostal: (by_postal: string) => {},
+  setPerPage: (per_page: string) => {},
+  setLoading: (loading: boolean) => {},
+  reset: () => {}
+};
+export const DashboardFiltersContext = createContext<IDashboardFiltersContextProps>(initialDashboardFiltersState);
 
-export const DashboardResultsContext = createContext<IDashboardResultsContextProps>({ breweries: [], loading: false });
+const initialDashboardResultsState = { breweries: [], loading: false };
+export const DashboardResultsContext = createContext<IDashboardResultsContextProps>(initialDashboardResultsState);
 
 interface IDashboardProviderProps {
   children: ReactNode;

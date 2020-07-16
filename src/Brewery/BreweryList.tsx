@@ -3,13 +3,13 @@ import { IBrewery } from "./types";
 import Brewery from "./Brewery";
 
 interface IBreweryListProps {
-  breweries: IBrewery[];
+  breweries: IBrewery[] | undefined;
 }
 
 const BreweryList: React.SFC<IBreweryListProps> = ({ breweries }): JSX.Element => {
   return (
     <>
-      {breweries.length > 0 ?
+      {breweries && breweries.length > 0 ?
       <div className="row">
         {breweries.map((brewery: IBrewery) =>
           <div className="col-4 mb-3" key={brewery.id}>

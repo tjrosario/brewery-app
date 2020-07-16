@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState, useCallback, useMemo } from 'react';
 import { DashboardFiltersContext } from './DashboardContext';
 import { useDebounce } from '../hooks';
-import { decode } from '~/common';
-import Textfield from '~/common/Textfield';
-import SelectField from '~/common/SelectField';
+import { decode } from '../common';
+import Textfield from '../common/Textfield';
+import SelectField from '../common/SelectField';
 
 const perPageOptions = [10, 20, 50];
 
@@ -14,13 +14,10 @@ const DashboardFilters: React.FC = (): JSX.Element => {
     types,
     states,
     search,
-    searchCriteria,
     setType,
     setState,
     setPostal,
     setPerPage,
-    loading,
-    reset
   } = useContext(DashboardFiltersContext);
 
   const memoSetType = useCallback((ev) => {

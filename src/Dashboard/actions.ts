@@ -1,5 +1,5 @@
 import { DashboardType, SearchCriteria } from './types';
-import { IBrewery } from '~/Brewery/types';
+import { IBrewery } from '../Brewery/types';
 
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined

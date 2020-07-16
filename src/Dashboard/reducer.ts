@@ -1,9 +1,9 @@
 import { DashboardType } from './types';
 import { Types, DashboardActions } from './actions';
-import { initialDashboardState, encode } from '../common';
+import { initialDashboardState } from '../common';
 import produce from 'immer';
 
-const reducer = (draft: DashboardType, action: DashboardActions): DashboardType => {
+const reducer = (draft: DashboardType, action: DashboardActions): DashboardType | undefined => {
   switch (action.type) {
     case Types.SEARCH:
       draft.query = action.payload.query;

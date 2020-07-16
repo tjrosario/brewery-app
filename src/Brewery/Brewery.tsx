@@ -18,7 +18,7 @@ const Brewery: React.SFC<IBrewery> = ({ name, street, city, state, postal_code, 
 
         {website_url ? (
           <small>
-            <a href={website_url} target={'_blank'} rel="noreferrer">
+            <a href={website_url} target={'_blank'} rel="noopener noreferrer">
               <i className="fas fa-external-link-alt mr-2"></i>
               Website
             </a>
